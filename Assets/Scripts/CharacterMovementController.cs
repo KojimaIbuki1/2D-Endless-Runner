@@ -18,11 +18,13 @@ public class CharacterMovementController : MonoBehaviour
     public LayerMask groundLayerMask;
 
     private Rigidbody2D rig;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     private void OnDrawGizmos()
@@ -56,7 +58,7 @@ public class CharacterMovementController : MonoBehaviour
         rig.velocity = velocityVector;
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -65,5 +67,7 @@ public class CharacterMovementController : MonoBehaviour
                 isJumping = true;
             }
         }
+        //change animation
+        anim.SetBool ("isOnGround", isOnGround);
     }
 }
